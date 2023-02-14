@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href='/styles.css' type="text/css"/>
+</head>
+
+<body class="box">
+    <h1>Blogger</h1>
+    <a href="/create"><button class="createBtn">Create New Blog</button></a>
+    <% formDetails.forEach((formData)=>{ %>
+        <div class="homeData">
+            <h2>Name:- <%=formData.Name %></h2>
+            <h2>Snippet:- <%=formData.Snippet %></h2>
+            <h2>Blog:- <%=formData.Blog %></h2><br>
+            <button class="delete" data-blog="<%= formData._id %>" onclick="handleDelete()">Delete</button>
+            <button class="Update" data-blog="<%= formData._id %>" onclick="handleUpdate()">Update</button>
+        </div>
+    <% }) %>
+
+</body>
+<script>
+    const handleDelete =()=>{
+        console.log("Delete")
+        const deleteBtn = document.querySelector('button.delete')
+        const id = deleteBtn.dataset.blog
+        const deleteEndpoint = `/delete/${id}`
+        fetch(deleteEndpoint,{
+                method: 'DELETE'
+            }).then(response => response.json())
+            .then(data=> {
+                console.log(data)
+                window.location.href = data.redirect
+            })
+            .catch(err=>{
+                console.log(err)
+            })
+    }
+
+    const handleUpdate =()=>{
+        console.log("Update")
+    }
+</script>
+</html>

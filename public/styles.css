@@ -1,0 +1,27 @@
+.box{
+    background-color:cornflowerblue;
+}
+.homeData{
+    color:darkorange;
+    border: 2px solid blueviolet;
+    background-color:aqua;
+    margin: 5px;
+    padding: 5px;
+    border-radius: 10px;
+}
+button{
+    margin-right: 5px;
+    background-color: greenyellow;
+    border-radius: 5px;
+}
+form{
+    text-align: center;
+    
+}
+button:hover{
+    background-color:mediumblue;
+}
+
+.createBtn{
+    height: 50px;
+}
