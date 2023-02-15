@@ -17,7 +17,7 @@
             <h2>Snippet:- <%=formData.Snippet %></h2>
             <h2>Blog:- <%=formData.Blog %></h2><br>
             <button class="delete" data-blog="<%= formData._id %>" onclick="handleDelete()">Delete</button>
-            <button class="Update" data-blog="<%= formData._id %>" onclick="handleUpdate()">Update</button>
+            <button class="update" data-blog="<%= formData._id %>" onclick="handleUpdate()">Update</button>
         </div>
     <% }) %>
 
@@ -27,6 +27,7 @@
         console.log("Delete")
         const deleteBtn = document.querySelector('button.delete')
         const id = deleteBtn.dataset.blog
+        console.log(id)
         const deleteEndpoint = `/delete/${id}`
         fetch(deleteEndpoint,{
                 method: 'DELETE'
@@ -41,7 +42,12 @@
     }
 
     const handleUpdate =()=>{
-        console.log("Update")
+        // const updateBtn = document.querySelector('button.update')
+        // const id = updateBtn.dataset.blog
+        const deleteBtn = document.querySelector('button.delete')
+        const id = deleteBtn.dataset.blog
+        console.log(id)
+        window.location.href = `/update/${id}`
     }
 </script>
 </html>

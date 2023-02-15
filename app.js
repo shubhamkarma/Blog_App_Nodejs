@@ -50,7 +50,26 @@ app.delete('/delete/:id', async(req,res)=>{
   res.json({redirect:'/home'})
 })
 
+app.get('/update/:id', async(req,res)=>{
+  const id = req.params.id
+  console.log(id)
+  const formDetails = await ProductModel.findById({_id: new ObjectId(id)}) 
+  console.log(formDetails._id.toString())
+  formDetails._id = formDetails._id.toString()
+  res.render('update',{formDetails})
+})
 
+app.put('/update/:id', async(req,res)=>{
+  const id = req.params.id
+  console.log(req.body)
+  const payLoad = {
+    Name:req.body.Name,
+    Snippet:req.body.Snippet,
+    Blog:req.body.Blog
+  }
+  const updated = await ProductModel.updateOne({_id:new ObjectId(id)},{$set:payLoad})
+  res.json({redirect:'/home'})
+})
 
 app.use((req,res)=>{
   res.sendStatus(404)

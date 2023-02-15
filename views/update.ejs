@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Blog</title>
+</head>
+<body>
+    <div>
+        <form id="update-blog" data-id="<%=formDetails._id%>">
+            <label for="Name">Name</label>
+            <input type="text" id="name" name="Name" value="<%=formDetails.Name%> " required>
+            <label for="Snippet">Snippet</label>
+            <input type="text" id="snippet" name="Snippet" value="<%=formDetails.Snippet%> " required>
+            <label for="Blog">Blog</label>
+            <textarea type="text" id="blog" name="Blog" required><%=formDetails.Blog%></textarea>
+            <button onclick="handleSubmit()" >Submit</button>
+        </form>
+    </div>
+
+    <script>
+        const handleSubmit =()=>{
+            const form = document.getElementById("update-blog")
+            event.preventDefault()
+            const id = form.dataset.id
+            const Name = document.getElementById('name')
+            const Snippet = document.getElementById('snippet')
+            const Blog = document.getElementById('blog')
+
+            const payLoad = {
+                Name:Name.value,
+                Snippet:Snippet.value,
+                Blog:Blog.value
+            }
+
+            const updateEndPoint = `/update/${id}`
+            const requestOptions = {
+                method : 'PUT',
+                headers : {'content-Type':'application/json'},
+                body : JSON.stringify(payLoad)
+            }
+            console.log("payLoad")
+            fetch(updateEndPoint,requestOptions)
+            .then(response => response.json())
+            .then(data=> {
+                console.log(data)
+                window.location.href = data.redirect
+            })
+            .catch(err=>{
+                console.log(err)
+            })
+        }
+
+    </script>
+</body>
+</html>
