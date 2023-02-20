@@ -46,6 +46,7 @@ app.post('/create', async(req,res)=>{
 
 app.delete('/delete/:id', async(req,res)=>{
   const id = req.params.id
+  console.log(id)
   const deletePost = await ProductModel.findByIdAndDelete({_id:new ObjectId(id)})
   res.json({redirect:'/home'})
 })

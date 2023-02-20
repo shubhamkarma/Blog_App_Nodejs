@@ -16,6 +16,7 @@
             <h2>Name:- <%=formData.Name %></h2>
             <h2>Snippet:- <%=formData.Snippet %></h2>
             <h2>Blog:- <%=formData.Blog %></h2><br>
+            <h2>ID:- <%= formData._id %></h2>
             <button class="delete" data-blog="<%= formData._id %>" onclick="handleDelete()">Delete</button>
             <button class="update" data-blog="<%= formData._id %>" onclick="handleUpdate()">Update</button>
         </div>
@@ -24,6 +25,7 @@
 </body>
 <script>
     const handleDelete =()=>{
+        event.preventDefault()
         console.log("Delete")
         const deleteBtn = document.querySelector('button.delete')
         const id = deleteBtn.dataset.blog
