@@ -4,7 +4,7 @@ const morgan = require('morgan')
 const ObjectId = require('mongodb').ObjectId
 
 const mongoose = require('mongoose')
-mongoose.connect("mongodb://localhost:27017/mongoose-ex2").then((conn)=>{console.log("Connected to DB")}).catch((e)=>{console.log(e)})
+mongoose.connect("mongodb+srv://shubhamkarma95:Maya2748@cluster0.sxzfirp.mongodb.net/blogsdb?retryWrites=true&w=majority").then((conn)=>{console.log("Connected to DB")}).catch((e)=>{console.log(e)})
 const ProductModel = require('./User')
 
 const app = express()
